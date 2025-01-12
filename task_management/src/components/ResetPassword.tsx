@@ -5,14 +5,13 @@ const PasswordResetButton: React.FC = () => {
     const { loginWithRedirect } = useAuth0();
 
     return (
-        <Button onClick={() => {
-            loginWithRedirect({
+        <Button onClick={() => loginWithRedirect({
                 authorizationParams: {
                     screen_hint: 'reset',
-                    redirect_uri: 'http://localhost:3000/'
+                    redirect_uri: 'http://localhost:5173/callback'
                 }
             })
-        }}></Button>
+        }>Reset Password</Button>
     )
 }
 

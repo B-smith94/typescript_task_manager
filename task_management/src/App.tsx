@@ -15,10 +15,7 @@ function App() {
     <>
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/dashboard' element={<AuthenticationGuard component={<TaskDashboard />} />} />
-        <Route path='/details' element={<AuthenticationGuard component={<ViewDetails />} />} />
-        <Route path='/create-task' element={<AuthenticationGuard component={<CreateTask />} />} />
-        <Route path='/edit-task' element={<AuthenticationGuard component={<EditTask />} />} />
+        
         <Route path='/callback' element={<CallbackPage />} />
       </Routes>
     </>
