@@ -10,6 +10,9 @@ const tasksReducer = (state: TasksContextValue, action: TasksActions): TasksCont
                 task.id === action.payload.id ? { ...task, ...action.payload } : task
             ) }
         case 'COMPLETE_TASK':
+            return { ...state, tasks: state.tasks.map(task =>
+                 task.id === action.payload ? { ...task, completed: true } : task)}
+        case 'DELETE_TASK':
             return { ...state, tasks: state.tasks.filter(task => task.id !== action.payload) };
     }
 }
