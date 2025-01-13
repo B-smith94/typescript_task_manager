@@ -7,7 +7,7 @@ const Login: React.FC = () => {
     const handleLogin = async () => {
         await loginWithRedirect({
             appState: {
-                returnTo: '/dashboard',
+                returnTo: '/callback',
             },
             authorizationParams: {
                 prompt: 'login',

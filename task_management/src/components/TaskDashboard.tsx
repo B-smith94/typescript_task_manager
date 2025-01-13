@@ -1,3 +1,4 @@
+import React from "react";
 import { Button, ListGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useTasksContext } from "../TaskContext";
@@ -9,8 +10,10 @@ const TaskDashboard: React.FC = () => {
     const [expandedTaskId, setExpandedTaskId] = useState<number | null>(null);
 
     const handleRemoveTask = (taskId: number) => {
-        dispatch({ type: 'DELETE_TASK', payload: taskId });
-    }
+        if (window.confirm('Are you sure you want to delete this task?')) {
+            dispatch({ type: 'DELETE_TASK', payload: taskId });            
+        }
+    };
     
     const handleCompleteTask = (taskId: number) => {
         dispatch({ type: 'COMPLETE_TASK', payload: taskId})
@@ -25,10 +28,10 @@ const TaskDashboard: React.FC = () => {
             <h1>Task Dashboard</h1>
             <Button onClick={() => navigate('/create-task')}>Add Task</Button>
             <ListGroup>
-                {tasks && tasks.length > 0 ? tasks.map(task => (
+                {tasks && tasks.length > 0 ? (tasks.map(task => (
                     <ListGroup.Item key={task.id}>
                         <span><strong>Task: </strong>{task.name}</span>
-                        <Button variant="info" role="button" onClick={() => toggleTaskDetails(task.id)}>{expandedTaskId === task.id ? 'Hide details' : 'Show Details'}</Button>
+                        <Button variant="light" role="button" onClick={() => toggleTaskDetails(task.id)}>{expandedTaskId === task.id ? 'Hide details' : 'Show Details'}</Button>
                         {expandedTaskId === task.id && (
                             <div>    
                                 <p><strong>Due Date: </strong> {task.taskEnd ? new Date(task.taskEnd).toLocaleString() : 'N/A'}</p>
@@ -37,8 +40,9 @@ const TaskDashboard: React.FC = () => {
                         )}
                         <Button variant="success" onClick={() => handleCompleteTask(task.id)}>Complete Task</Button>
                         <Button variant="danger" onClick={() => handleRemoveTask(task.id)}>Remove Task</Button>
+                        <Button variant="info" onClick={() => navigate(`/edit-task/${task.id}`)}>Edit Task</Button>
                     </ListGroup.Item>
-                )) : <p>No tasks currently logged.</p>}
+                ))) : <p>No tasks currently logged.</p>}
             </ListGroup>
         </div>
     );
