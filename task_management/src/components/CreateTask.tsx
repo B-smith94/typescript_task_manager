@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Form, Row, Col } from "react-bootstrap";
+import { Button, Form, Row, Col, Alert } from "react-bootstrap";
 import { useTasksContext } from "../TaskContext";
 import { useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
@@ -19,9 +19,14 @@ const CreateTask: React.FC = () => {
             taskEnd: taskEnd? new Date(taskEnd).getTime() : null,
             complete: false,
         };
-
-        dispatch({ type: 'ADD_TASK', payload: newTask });
-        navigate('/dashboard');
+        try {
+            dispatch({ type: 'ADD_TASK', payload: newTask });
+             navigate('/dashboard');
+        } catch(error: any) {
+            return (<Alert variant="danger">Failed to add task: {error}</Alert>)
+        }  
+       
+        
     }
 
     return (

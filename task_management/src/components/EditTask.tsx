@@ -30,10 +30,12 @@ const EditTask: React.FC = () => {
             taskEnd: taskEnd? new Date(taskEnd).getTime() : null,
             complete: complete,
         };
-
-        dispatch({ type: 'EDIT_TASK', payload: updatedTask });
-
-        navigate('/dashboard');
+        try {
+            dispatch({ type: 'EDIT_TASK', payload: updatedTask });
+            navigate('/dashboard');
+        } catch(error: any) {
+            return (<Alert variant="danger">Failed to edit task: {error}</Alert>)
+        }
     }
 
     return (

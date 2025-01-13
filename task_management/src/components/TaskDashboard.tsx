@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, ListGroup, Row, Col, Card} from "react-bootstrap";
+import { Button, ListGroup, Row, Col, Card, Alert} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useTasksContext } from "../TaskContext";
 import { useState } from "react";
@@ -13,7 +13,11 @@ const TaskDashboard: React.FC = () => {
 
     const handleRemoveTask = (taskId: number) => {
         if (window.confirm('Are you sure you want to delete this task?')) {
-            dispatch({ type: 'DELETE_TASK', payload: taskId });   
+            try {
+                dispatch({ type: 'DELETE_TASK', payload: taskId });   
+            } catch (error: any) {
+                return (<Alert variant="danger">Failed to delete task: {error}</Alert>)
+            }
         }
     };
 
