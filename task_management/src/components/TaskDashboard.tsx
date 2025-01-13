@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, ListGroup, Row, Col, Card } from "react-bootstrap";
+import { Button, ListGroup, Row, Col, Card} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useTasksContext } from "../TaskContext";
 import { useState } from "react";
@@ -10,15 +10,12 @@ const TaskDashboard: React.FC = () => {
     const navigate = useNavigate();
     const [expandedTaskId, setExpandedTaskId] = useState<number | null>(null);
 
+
     const handleRemoveTask = (taskId: number) => {
         if (window.confirm('Are you sure you want to delete this task?')) {
-            dispatch({ type: 'DELETE_TASK', payload: taskId });            
+            dispatch({ type: 'DELETE_TASK', payload: taskId });   
         }
     };
-    
-    const handleCompleteTask = (taskId: number) => {
-        dispatch({ type: 'COMPLETE_TASK', payload: taskId})
-    }
 
     const toggleTaskDetails = (taskId: number) => {
         setExpandedTaskId(expandedTaskId === taskId? null : taskId);
@@ -27,7 +24,7 @@ const TaskDashboard: React.FC = () => {
     return (
         <div>
             <NavBar />
-            <div className="bg-primary text-white border border-3">
+            <div className="bg-primary text-white border border-3 rounded-bottom">
                 <h1>Task Dashboard</h1>
                 <p>Welcome to the Task Dashboard, for all your Task Management needs!</p> 
             </div>

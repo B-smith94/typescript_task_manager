@@ -3,6 +3,7 @@ import { Button, Form, Row, Col, Alert } from "react-bootstrap";
 import { useTasksContext } from "../TaskContext";
 import Task from "../Tasks";
 import { useNavigate, useParams } from "react-router-dom";
+import NavBar from "./NavBar";
 
 const EditTask: React.FC = () => {
     const { id } = useParams();
@@ -37,9 +38,12 @@ const EditTask: React.FC = () => {
 
     return (
         <div>
-            <Form onSubmit={handleSubmit}>
+            <NavBar />
+            <h3 className="mt-1">Edit Task</h3>
+            <p>Change the values below to update your task. NOTE: The due date is not necessary, but is very helpful for keeping you on task!</p>
+            <Form onSubmit={handleSubmit} className="bg-light border rounded p-2">
                 <Row>
-                    <Col>
+                    <Col lg={7}>
                         <Form.Group>
                             <Form.Label>Name</Form.Label>
                             <Form.Control
@@ -49,7 +53,7 @@ const EditTask: React.FC = () => {
                             />
                         </Form.Group>
                     </Col>
-                    <Col>
+                    <Col lg={3} className="">
                         <Form.Group>
                             <Form.Label>Due Date</Form.Label>
                             <Form.Control
@@ -59,18 +63,21 @@ const EditTask: React.FC = () => {
                             />
                         </Form.Group>
                     </Col>
-                    <Col>
+                    <Col className="d-flex align-items-center mt-4">
                         <Form.Group>
                             <Form.Check
                              type="checkbox"
                              label="Mark as Complete"
                              checked={complete}
                              onChange={(e) => setComplete(e.target.checked)}
+                             className="justify-content-center"
                             />
                         </Form.Group>
                     </Col>
-                    <Button variant="primary" type="submit">Update Task</Button>
-                    <Button variant="danger" onClick={() => navigate('/dashboard')}>Cancel</Button>
+                    <div>
+                        <Button variant="primary" className="m-1" type="submit">Update Task</Button>
+                        <Button variant="danger" className="m-1" onClick={() => navigate('/dashboard')}>Cancel</Button>
+                    </div>
                 </Row>
             </Form>
 

@@ -7,8 +7,8 @@ import React from "react";
 const NavBar: React.FC = () => {
     return (
         <div>
-            <Navbar bg="light" expand='md' as='header' role='navigation' className="border border-1">
-                <Navbar.Brand as={NavLink} to={'/dashboard'} >Task Management Application</Navbar.Brand>
+            <Navbar bg="light" expand='md' as='header' role='navigation' className="border border-1 rounded-top">
+                <Navbar.Brand as={NavLink} to={'/dashboard'} className="ms-1">Task Management Application</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" className='' />
                 <Navbar.Collapse id="basic-navbar-nav" >
                     <Nav className="align-items-center mr-auto" as='nav' role="menubar">

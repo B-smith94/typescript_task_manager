@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, Form, Row, Col } from "react-bootstrap";
 import { useTasksContext } from "../TaskContext";
 import { useNavigate } from "react-router-dom";
+import NavBar from "./NavBar";
 
 const CreateTask: React.FC = () => {
     const [taskName, setName] = useState('');
@@ -20,15 +21,17 @@ const CreateTask: React.FC = () => {
         };
 
         dispatch({ type: 'ADD_TASK', payload: newTask });
-
         navigate('/dashboard');
     }
 
     return (
         <div>
-            <Form onSubmit={handleSubmit}>
+            <NavBar />
+            <h3 className="mt-2">Add a Task</h3>
+            <p>Fill out the form below to add a task. NOTE: The due date is not necessary, but is very helpful for keeping you on task!</p>
+            <Form onSubmit={handleSubmit} className="bg-light border p-2 rounded">
                 <Row>
-                    <Col>
+                    <Col md={9}>
                         <Form.Group>
                             <Form.Label>Name</Form.Label>
                             <Form.Control
@@ -48,11 +51,12 @@ const CreateTask: React.FC = () => {
                             />
                         </Form.Group>
                     </Col>
-                    <Button variant="primary" type="submit">Create Task</Button>
-                    <Button variant="danger" onClick={() => navigate('/dashboard')}>Cancel</Button>
+                    <div>
+                        <Button variant="primary" type="submit" className="m-1">Create Task</Button>
+                        <Button variant="danger" className="m-1" onClick={() => navigate('/dashboard')}>Cancel</Button>   
+                    </div>
                 </Row>
             </Form>
-
         </div>
     )
 }
