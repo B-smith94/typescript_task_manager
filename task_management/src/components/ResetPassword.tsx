@@ -10,7 +10,7 @@ const PasswordResetButton: React.FC = () => {
         loginWithRedirect({
             authorizationParams: {
                 screen_hint: 'reset',
-                redirect_uri: 'http://localhost:5173/'
+                redirect_uri: 'http://localhost:5173/callback'
             }
         })
         
